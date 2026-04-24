@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{background:#050510;color:#fff}
+    header{
+      display:flex;
+      align-items:center;
+      padding:20px 8%;
+      position:fixed;
+      width:100%;
+      top:0;
+      background:rgba(0,0,0,0.6);
+      backdrop-filter:blur(10px);
+      z-index:1000;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:25px; /* controls space between nav & toggle */
+      margin-left:auto;
+    }
+
+    nav a{
+      margin:0 10px;
+    }
+
+    nav a{margin-left:20px;color:#fff;text-decoration:none;transition:0.3s}
+    nav a:hover{color:#a855f7}
+
+    .hero{height:100vh;display:flex;align-items:center;justify-content:space-between;padding:0 8%;gap:40px}
+    .left h3{color:#a855f7}
+    .left h1{font-size:48px;margin:10px 0}
+    .right img{width:350px;border-radius:20px;box-shadow:0 0 40px rgba(168,85,247,0.5)}
+
+    .btn{
+      display:inline-block;
+      margin-top:20px;
+      padding:10px 20px;
+      border-radius:20px;
+      background:#a855f7;
+      color:#fff;
+      text-decoration:none;
+      transition:0.3s;
+      box-shadow:0 0 10px rgba(168,85,247,0.5);
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 25px rgba(168,85,247,0.9);
+    }
+
+    section{padding:80px 8%}
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+    .card{background:#0c0c1d;padding:20px;border-radius:15px;transition:0.3s}
+    .card ul{margin:10px 0 10px 20px;font-size:14px;line-height:1.6}
+    .card h3{margin-bottom:10px}
+    .card p{font-size:14px;margin-bottom:10px}
+    .card:hover{
+      transform:translateY(-12px) scale(1.02);
+      box-shadow:0 0 25px rgba(168,85,247,0.5);
+    }
+
+    footer{text-align:center;padding:20px;background:#0c0c1d}
+
+    @media(max-width:768px){
+      .hero{flex-direction:column;text-align:center}
+      .right img{width:250px}
+    }
+  
+    .right{
+      position:relative;
+    }
+    .right::before{
+      content:"";
+      position:absolute;
+      width:380px;
+      height:380px;
+      background:radial-gradient(circle, rgba(168,85,247,0.6), transparent 60%);
+      filter:blur(40px);
+      z-index:-1;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      animation:floatGlow 4s ease-in-out infinite alternate;
+    }
+    @keyframes floatGlow{
+      from{transform:translate(-50%,-48%)}
+      to{transform:translate(-50%,-52%)}
+    }
+
+    .skills{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+      gap:15px;
+      margin-top:20px;
+    }
+    .skill{
+      background:#0c0c1d;
+      padding:10px;
+      text-align:center;
+      border-radius:10px;
+      transition:0.3s;
+    }
+    .skill:hover{
+      background:#a855f7;
+      transform:scale(1.05);
+    }
+
+    nav a.active {
+      color: #a855f7;
+      font-weight: 600;
+    }
+
+    
+    nav a {
+      position: relative;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #a855f7;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a.active::after {
+      width: 100%;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section{
+      padding:100px 8%;
+    }
+
+    .btn + .btn {
+      margin-left: 15px;
+    }
+
+    #typing::after {
+      content: "|";
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      outline: none;
+      background: rgba(255,255,255,0.08); /* glass effect */
+      color: #fff;
+      backdrop-filter: blur(10px);
+    }
+
+    input:focus, textarea:focus {
+      border: 1px solid #a855f7;
+      box-shadow: 0 0 10px rgba(168,85,247,0.4);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+
+    textarea {
+      min-height: 100px;
+    }
+
+    #status {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    body.light {
+      background: #ffffff;
+      color: #000;
+    }
+
+    body.light input,
+    body.light textarea {
+      background: rgba(0,0,0,0.05); /* soft grey */
+      color: #000;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    body.light input::placeholder,
+    body.light textarea::placeholder {
+      color: rgba(0,0,0,0.5);
+    }
+
+    body.light header {
+      background: rgba(255,255,255,0.8);
+    }
+
+    body.light .card {
+      background: #f3f3f3;
+    }
+
+    body.light .skill {
+      background: #eaeaea;
+    }
+
+    body.light .btn {
+      background: #a855f7;
+      color: #fff;
+    }
+
+    body.light footer {
+      background: #f3f3f3;
+    }
+
+    #theme-toggle{
+      padding:8px 14px;
+      border-radius:25px;
+    }
+
+    body.light nav a {
+      color: #000; /* black text in light mode */
+    }
+
+    body.light nav a:hover {
+      color: #a855f7; /* keep purple hover */
+    }
+
+    body.light nav a.active {
+      color: #a855f7; /* active link stays purple */
+    }
+
+    body.light header h2 {
+      color: #000;
+    }
+
+
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Isha Raut</h2>
+  <div class="nav-right">
+      <nav>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <button id="theme-toggle" class="btn">🌙</button>
+    </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="left">
+    <h3>Hello, I'm</h3>
+    <h1>Isha Raut</h1>
+    <h2>
+      I am a <span id="typing" style="color:#a855f7;"></span>
+    </h2>
+
+    <p style="margin-top:15px; max-width:500px;">
+      I build modern, responsive and user-friendly applications. Passionate about software development, problem solving and creating impactful digital experiences.
+    </p>
+
+    <a href="#projects" class="btn">View Work</a>
+    <a href="Isha_Raut_Resume.pdf" download class="btn">Download Resume</a>
+  </div>
+  <div class="right">
+    <img src="image_profile.jpg" alt="Isha Raut">
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="skill">Java</div>
+    <div class="skill">Python</div>
+    <div class="skill">C/C++</div>
+    <div class="skill">HTML</div>
+    <div class="skill">CSS</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">React</div>
+    <div class="skill">Node.js</div>
+    <div class="skill">MySQL</div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>I am a Computer Science & Engineering student at Dr. Sudhir Chandra Sur Institute of Technology and Sports Complex. I am passionate about Software Development, Web Technologies, and UI/UX Design. I enjoy problem-solving, coding, and building user-friendly applications.</p>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+
+    <div class="card">
+      <h3>Student Attendance System</h3>
+      <p>Responsive frontend project built using HTML, CSS, and JavaScript.</p>
+      <ul>
+        <li>CRUD operations for student records</li>
+        <li>Date-wise attendance tracking</li>
+        <li>Dynamic attendance percentage calculation</li>
+        <li>Search functionality</li>
+        <li>Data stored using localStorage</li>
+        <li>Visual performance indicators (🟢🟡🔴)</li>
+      </ul>
+      <a href="https://student-attendance-system-isha.netlify.app/" target="_blank" class="btn">Live Demo</a>
+      <a href="https://github.com/isharaut1720/student-attendance-system" target="_blank" class="btn">GitHub</a>
+    </div>
+
+    <div class="card">
+      <h3>Personal Portfolio</h3>
+      <p>Designed and developed a responsive personal portfolio using React (Vite), HTML, CSS and JavaScript; deployed on Vercel.</p>
+      <ul>
+        <li>Fully responsive design for mobile, tablet, and desktop</li>
+        <li>Modern and clean UI with smooth navigation</li>
+        <li>Fast performance using Vite</li>
+        <li>Project showcase with structured layout</li>
+        <li>Interactive sections with smooth scrolling</li>
+      </ul>
+      <a href="https://isha-raut-portfolio.vercel.app/" target="_blank" class="btn">Live Demo</a>
+      <a href="https://github.com/IshaRaut1720/IshaRaut-Portfolio" target="_blank" class="btn">GitHub</a>
+    </div>
+
+    <div class="card">
+      <h3>Student Management System (Full Stack)</h3>
+      <p>Full-stack application using Spring Boot and MySQL.</p>
+      <ul>
+        <li>CRUD operations</li>
+        <li>REST API integration</li>
+        <li>Responsive UI</li>
+        <li>MySQL database connectivity</li>
+      </ul>
+      <p><strong>Tech Stack:</strong> Java, Spring Boot, HTML, CSS, JavaScript, Bootstrap, MySQL</p>
+      <a href="https://student-management-system-production-a469.up.railway.app/" target="_blank" class="btn">Live Project</a>
+      <a href="https://github.com/isharaut1720/student-management-system" target="_blank" class="btn">GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+
+  <form id="contact-form">
+    <input type="text" name="from_name" placeholder="Your Name" required>
+    <input type="email" name="from_email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+
+  <p id="status"></p>
+
+  <p>📧 Email: ishaaraut65@gmail.com</p>
+  <p>
+     🔗 <a href="https://www.linkedin.com/in/isharaut65" target="_blank" style="color:#a855f7">LinkedIn</a>
+  </p>
+  <p>
+     💻 <a href="https://github.com/IshaRaut1720" target="_blank" style="color:#a855f7">GitHub</a>
+  </p>
+</section>
+
+<footer>
+  <p>© 2026 Isha Raut Portfolio</p>
+</footer>
+
+<script>
+  document.querySelectorAll('nav a').forEach(link=>{
+    link.addEventListener('click',function(e){
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+    })
+  })
+</script>
+
+<script>
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    const sectionHeight = section.clientHeight;
+
+    if (
+      pageYOffset >= sectionTop &&
+      pageYOffset < sectionTop + sectionHeight
+    ) {
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+</script>
+
+<script>
+const fadeElements = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.2 });
+
+fadeElements.forEach(el => {
+  el.classList.add("fade-in");
+  observer.observe(el);
+});
+</script>
+
+<script>
+const text = [
+  "Software Developer",
+  "Web Developer",
+  "Android App Developer",
+  "Full Stack Developer"
+];
+
+let i = 0, j = 0, current = "", isDeleting = false;
+
+function type() {
+  current = text[i];
+  document.getElementById("typing").textContent = current.substring(0, j);
+
+  if (!isDeleting && j < current.length) {
+    j++;
+  } else if (isDeleting && j > 0) {
+    j--;
+  } else {
+    isDeleting = !isDeleting;
+    if (!isDeleting) i = (i + 1) % text.length;
+  }
+
+  setTimeout(type, isDeleting ? 50 : 100);
+}
+
+type();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init("cq9dQhTvkJ-Ds5sFn"); // replace this
+})();
+
+document.getElementById("contact-form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  emailjs.sendForm("service_mv9ms4u", "template_dgopveo", this)
+    .then(function(){
+      document.getElementById("status").innerText = "Message sent successfully!";
+    }, function(){
+      document.getElementById("status").innerText = "Failed to send message.";
+    });
+
+  this.reset();
+});
+</script>
+
+<script>
+const toggleBtn = document.getElementById("theme-toggle");
+
+// Load saved theme
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light");
+  toggleBtn.textContent = "☀️";
+}
+
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+
+  if (document.body.classList.contains("light")) {
+    localStorage.setItem("theme", "light");
+    toggleBtn.textContent = "☀️";
+  } else {
+    localStorage.setItem("theme", "dark");
+    toggleBtn.textContent = "🌙";
+  }
+});
+</script>
+
+</body>
+</html>
