@@ -7,7 +7,7 @@ This project showcases my skills, projects, and experience as an aspiring Softwa
 
 ## 🚀 Live Demo
 
-🔗 https://isha-raut-portfolio.vercel.app/
+🔗 https://isharaut-portfolio-2026.netlify.app/
 
 ---
 
