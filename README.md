@@ -106,3 +106,5 @@ open index.html
 ## 📄 License
 
 This project is open-source and available for learning purposes.
+
+Updated username config
